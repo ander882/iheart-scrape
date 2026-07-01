@@ -36,9 +36,10 @@ go.sh gives us 2 paramiters.
 
 #get the main web page info.  Yeah all of the last 12 songs are in there.  
 wget -qO- "$1" | \
-# extract just the 12 songs
+# we have the web page - extract just the 12 songs
  grep -oP 'href="\K[^" ]+' | grep artist |grep songs | \
- #Pretty them up to be in tsv format.  Artist \t song
+#We have the info in 12 lines like '/artist/name-of-artist-number/songs/name-of-song-number'
+ #Pretty them up to be in tsv format.  'name of Artist\tname of song'
  sed -e 's/\/artist\///' \
      -e 's/-[0-9]*\/songs\//\t/' \
      -e 's/-[0-9]*$//' \
