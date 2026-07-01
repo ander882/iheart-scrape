@@ -28,5 +28,9 @@ done
 ## run.sh
 This is the meat.  Lets break it down.
 go.sh gives us 2 paramiters.  
-. The iheart web site for our station and 
-. the file name to use for the playlist
+- "$1" The iheart web site for our station and 
+- "$2" the file name to use for the playlist
+
+```
+
+```
