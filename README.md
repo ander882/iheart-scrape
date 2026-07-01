@@ -8,7 +8,7 @@ So easy, lets run through the whole code right here!
 ## go.sh
 This is a little program to scrape each station every 45 minutes.
 
-'''
+```
 #!/bin/bash
 
 while true; do 
@@ -23,7 +23,7 @@ date
 echo
 sleep 45m; 
 done
-'''
+```
 
 ## run.sh
 This is the meat.  Lets break it down.
