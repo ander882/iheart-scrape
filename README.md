@@ -32,5 +32,24 @@ go.sh gives us 2 paramiters.
 - "$2" the file name to use for the playlist
 
 ```
+#!/bin/bash
 
+#get the main web page info.  Yeah all of the last 12 songs are in there.  
+wget -qO- "$1" | \
+# extract just the 12 songs
+ grep -oP 'href="\K[^" ]+' | grep artist |grep songs | \
+ #Pretty them up to be in tsv format.  Artist \t song
+ sed -e 's/\/artist\///' \
+     -e 's/-[0-9]*\/songs\//\t/' \
+     -e 's/-[0-9]*$//' \
+     -e 's/-/ /g'> data/"$2".list
+
+# Print the current playlist info
+ wc "$2".playlist
+
+# Only add the unique songs into the list.  don't add duplicates.
+ awk 'FNR==NR{existing[$0]; next} !($0 in existing)' "$2".playlist data/"$2".list >> "$2".playlist 
+
+# Print the new playlist info
+ wc "$2".playlist
 ```
